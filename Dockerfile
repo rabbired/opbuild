@@ -9,11 +9,11 @@ RUN mkdir /opt/opbuild /opt/binwalk && \
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get -y upgrade && \
-	apt install -y --assume-yes build-essential asciidoc binutils bzip2 gawk gettext git && \
+	apt install -y --assume-yes build-essential asciidoc binutils bzip2 gawk gettext git
 
 RUN apt-get update && apt-get -y upgrade && \
         apt install -y --assume-yes libncurses5-dev libz-dev patch unzip zlib1g-dev \
-	lib32gcc1 libc6-dev-i386 subversion && \
+	lib32gcc1 libc6-dev-i386 subversion
 
 RUN apt-get update && apt-get -y upgrade && \
         apt install -y --assume-yes flex uglifyjs git-core gcc-multilib p7zip \
@@ -21,7 +21,7 @@ RUN apt-get update && apt-get -y upgrade && \
 	upx libelf-dev autoconf automake libtool autopoint \
 	curl nano wget python python3 python3-pip && \
         python3 -m pip install --upgrade --force pip && \
-        ln -s /usr/local/bin/pip /bin/pip && \
+        ln -s /usr/local/bin/pip /bin/pip
 
 RUN git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
         apt-get update && \
