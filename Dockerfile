@@ -17,9 +17,9 @@ RUN apt-get update && apt-get -y upgrade && \
 
 RUN apt-get update && apt-get -y upgrade && \
         apt install -y --assume-yes flex uglifyjs git-core gcc-multilib p7zip \
-	p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils \
-	upx libelf-dev autoconf automake libtool autopoint \
-	curl nano wget python python3 python3-pip && \
+    p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx \
+    libelf-dev autoconf automake libtool autopoint device-tree-compiler \
+    g++-multilib antlr3 gperf wget curl swig rsync nano wget python python3 python3-pip && \
         python3 -m pip install --upgrade --force pip && \
         ln -s /usr/local/bin/pip /bin/pip
 
@@ -30,7 +30,7 @@ RUN git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
         ./deps.sh --yes && \
         ln -s /usr/local/bin/binwalk /bin/binwalk && \
         rm -rf /opt/binwalk && \
-	apt-get -q -y autoremove && \
+RUN	apt-get -q -y autoremove && \
 	apt-get -q -y clean && \
 	rm -rf /var/lib/apt/lists/*
 
