@@ -2,7 +2,7 @@
 see https://github.com/ReFirmLabs/binwalk
 # 用于编译Lean源码的简易容器
     # 生成命令
-    sudo cat >/etc/profile.d/opbuild.sh <<EOF
+    sudo bash -c 'cat > /etc/profile.d/opbuild.sh' <<EOF
     #!/bin/bash
     alias opmake="docker run -it --rm -v $OPDIR:/opt/opbuild rabbired/opbuild bash "
     EOF
