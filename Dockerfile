@@ -13,7 +13,7 @@ RUN apt-get update && apt-get -y upgrade && \
 
 RUN apt-get update && apt-get -y upgrade && \
         apt install -y --assume-yes libncurses5-dev libz-dev patch unzip zlib1g-dev \
-	lib32gcc1 libc6-dev-i386 subversion
+	lib32gcc1 libc6-dev-i386 subversion rsync
 
 RUN apt-get update && apt-get -y upgrade && \
         apt install -y --assume-yes flex uglifyjs git-core gcc-multilib p7zip \
