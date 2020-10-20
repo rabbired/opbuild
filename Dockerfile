@@ -12,7 +12,7 @@ RUN apt-get update && apt-get -y upgrade && \
 	apt install -y --assume-yes build-essential asciidoc binutils bzip2 gawk gettext git
 
 RUN apt-get update && apt-get -y upgrade && \
-        apt install -y --assume-yes libncurses5-dev libz-dev patch unzip zlib1g-dev \
+    apt install -y --assume-yes libncurses5-dev libz-dev patch unzip zlib1g-dev \
 	lib32gcc1 libc6-dev-i386 subversion rsync
 
 RUN apt-get update && apt-get -y upgrade && \
@@ -29,7 +29,7 @@ RUN git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
         python3 setup.py install && \
         ./deps.sh --yes && \
         ln -s /usr/local/bin/binwalk /bin/binwalk && \
-        rm -rf /opt/binwalk && \
+        rm -rf /opt/binwalk
 RUN	apt-get -q -y autoremove && \
 	apt-get -q -y clean && \
 	rm -rf /var/lib/apt/lists/*
