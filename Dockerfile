@@ -9,10 +9,10 @@ RUN mkdir /opt/opbuild /opt/binwalk && \
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update && apt -y upgrade && \
-	apt install -y --assume-yes asciidoc
-
-RUN apt install -y --assume-yes libncurses5-dev libz-dev patch unzip zlib1g-dev \
+    apt install -y --assume-yes libncurses5-dev libz-dev patch unzip zlib1g-dev mkisofs \
 	lib32gcc1 libc6-dev-i386 subversion rsync build-essential binutils bzip2 gawk gettext git
+
+RUN	apt install -y --assume-yes asciidoc
 
 RUN apt install -y --assume-yes flex uglifyjs git-core gcc-multilib p7zip \
     p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx \
