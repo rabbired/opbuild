@@ -58,7 +58,7 @@ RUN apt install -y --assume-yes \
     nano \
     python3-pip
 
-RUN python3 -m pip install --upgrade --force pip && python3 -m pip3 install --upgrade --force pip && \
+RUN python3 -m pip install --upgrade --force pip && \
     ln -s /usr/local/bin/pip /bin/pip && \
     git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
     cd /opt/binwalk && \
