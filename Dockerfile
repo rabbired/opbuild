@@ -56,9 +56,11 @@ RUN apt install -y --assume-yes \
     swig \
     rsync \
     nano \
-    python3-pip
+    python3-pip \
+    sudo
 
-RUN python3 -m pip install --upgrade --force pip && \
+RUN echo "opbuild ALL=(ALL:ALL) ALL"  >> /etc/sudoers && \
+    python3 -m pip install --upgrade --force pip && \
     ln -s /usr/local/bin/pip /bin/pip && \
     git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
     cd /opt/binwalk && \
