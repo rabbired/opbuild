@@ -4,12 +4,14 @@ MAINTAINER Red Z <rabbired@outlook.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN mkdir /opt/opbuild /opt/binwalk && \
-    useradd -d /opt/opbuild -s /bin/bash opbuild && \
-    chown -R opbuild:opbuild /opt/opbuild
-
 RUN	apt update && apt -y upgrade && \
-    apt install -y --assume-yes asciidoc
+    apt install -y --assume-yes \
+    asciidoc \
+    sudo && \
+    mkdir /opt/opbuild /opt/binwalk && \
+    useradd -d /opt/opbuild -s /bin/bash opbuild && \
+    chown -R opbuild:opbuild /opt/opbuild && \
+    echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers
 
 RUN apt install -y --assume-yes \
     binutils \
@@ -56,10 +58,9 @@ RUN apt install -y --assume-yes \
     swig \
     rsync \
     nano \
-    python3-pip \
-    sudo
+    python3-pip
 
-RUN echo "opbuild ALL=(ALL:ALL) ALL"  >> /etc/sudoers && \
+RUN echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers && \
     python3 -m pip install --upgrade --force pip && \
     ln -s /usr/local/bin/pip /bin/pip && \
     git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
