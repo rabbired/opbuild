@@ -79,12 +79,12 @@ RUN apt update && apt install -y --assume-yes \
 	/var/tmp/*
 
 RUN echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers && \
-    python3 -m pip install --upgrade --force pip && \
-    ln -s /usr/local/bin/pip /bin/pip && \
+    pip3 --no-cache-dir install -U pip && \
+    if [[ ! -e /usr/local/bin/pip3 ]]; then ln -sf /usr/local/bin/pip3 /bin/pip; fi && \
     git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
     cd /opt/binwalk && \
     ./deps.sh --yes && \
-    ln -s /usr/local/bin/binwalk /bin/binwalk && \
+    if [[ ! -e /usr/local/bin/binwalk ]]; then ln -sf /usr/local/bin/binwalk /bin/binwalk; fi && \
     rm -rf /opt/binwalk && \
  apt-get autoremove && \
  apt-get clean && \
