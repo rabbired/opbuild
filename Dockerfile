@@ -32,7 +32,9 @@ RUN apt update && apt -y upgrade && \
   texinfo libglib2.0-dev xmlto qemu-utils \
   upx libelf-dev autoconf automake libtool \
   autopoint device-tree-compiler g++-multilib \
-  antlr3 gperf wget curl swig rsync && \
+  antlr3 gperf wget curl swig rsync python3 \
+  python3-pip && \
+  if [[ ! -e /usr/local/bin/pip3 ]]; then ln -sf /usr/local/bin/pip3 /bin/pip; fi && \
      apt-get autoremove && \
      apt-get clean && \
      rm -rf \
@@ -42,7 +44,6 @@ RUN apt update && apt -y upgrade && \
 
 RUN echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers && \
     pip3 --no-cache-dir install -U pip && \
-    if [[ ! -e /usr/local/bin/pip3 ]]; then ln -sf /usr/local/bin/pip3 /bin/pip; fi && \
     git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
     cd /opt/binwalk && \
     ./deps.sh --yes && \
