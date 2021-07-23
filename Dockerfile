@@ -34,7 +34,7 @@ RUN apt update && apt -y upgrade && \
   autopoint device-tree-compiler g++-multilib \
   antlr3 gperf wget curl swig rsync python3 \
   python3-pip && \
-  if [[ ! -e /usr/local/bin/pip3 ]]; then ln -sf /usr/local/bin/pip3 /bin/pip; fi && \
+  if [ ! -e /usr/local/bin/pip3 ] ; then ln -sf /usr/local/bin/pip3 /bin/pip ; fi && \
      apt-get autoremove && \
      apt-get clean && \
      rm -rf \
@@ -43,15 +43,15 @@ RUN apt update && apt -y upgrade && \
 	/var/tmp/*
 
 RUN echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers && \
-    pip3 --no-cache-dir install -U pip && \
-    git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
-    cd /opt/binwalk && \
-    ./deps.sh --yes && \
-    if [[ ! -e /usr/local/bin/binwalk ]]; then ln -sf /usr/local/bin/binwalk /bin/binwalk; fi && \
+  pip3 --no-cache-dir install -U pip && \
+  git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
+  cd /opt/binwalk && \
+  ./deps.sh --yes && \
+  if [ ! -e /usr/local/bin/binwalk ] ; then ln -sf /usr/local/bin/binwalk /bin/binwalk ; fi && \
     rm -rf /opt/binwalk && \
- apt-get autoremove && \
- apt-get clean && \
- rm -rf \
+    apt-get autoremove && \
+    apt-get clean && \
+    rm -rf \
 	/tmp/* \
 	/var/lib/apt/lists/* \
 	/var/tmp/*
