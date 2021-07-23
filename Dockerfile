@@ -4,7 +4,7 @@ MAINTAINER Red Z <rabbired@outlook.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN	apt update && apt -y upgrade && \
+RUN apt update && apt -y upgrade && \
     apt install -y --assume-yes \
     asciidoc \
     sudo && \
@@ -12,13 +12,19 @@ RUN	apt update && apt -y upgrade && \
     useradd -d /opt/opbuild -s /bin/bash opbuild && \
     chown -R opbuild:opbuild /opt/opbuild && \
     echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers
+        apt -q -y autoremove && \
+	apt -q -y clean && \
+	rm -rf /var/lib/apt/lists/*
 
 RUN apt install -y --assume-yes \
     binutils \
     bzip2 \
     gawk \
     gettext \
-    git
+    git && \
+        apt -q -y autoremove && \
+	apt -q -y clean && \
+	rm -rf /var/lib/apt/lists/*
 
 RUN apt install -y --assume-yes \
     libncurses5-dev \
@@ -58,7 +64,10 @@ RUN apt install -y --assume-yes \
     swig \
     rsync \
     nano \
-    python3-pip
+    python3-pip && \
+    	apt -q -y autoremove && \
+	apt -q -y clean && \
+	rm -rf /var/lib/apt/lists/*
 
 RUN echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers && \
     python3 -m pip install --upgrade --force pip && \
