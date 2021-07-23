@@ -11,22 +11,28 @@ RUN apt update && apt -y upgrade && \
     mkdir /opt/opbuild /opt/binwalk && \
     useradd -d /opt/opbuild -s /bin/bash opbuild && \
     chown -R opbuild:opbuild /opt/opbuild && \
-    echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers
-        apt -q -y autoremove && \
-	apt -q -y clean && \
-	rm -rf /var/lib/apt/lists/*
+    echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers && \
+ apt-get autoremove && \
+ apt-get clean && \
+ rm -rf \
+	/tmp/* \
+	/var/lib/apt/lists/* \
+	/var/tmp/*
 
-RUN apt install -y --assume-yes \
+RUN apt update && apt install -y --assume-yes \
     binutils \
     bzip2 \
     gawk \
     gettext \
     git && \
-        apt -q -y autoremove && \
-	apt -q -y clean && \
-	rm -rf /var/lib/apt/lists/*
+ apt-get autoremove && \
+ apt-get clean && \
+ rm -rf \
+	/tmp/* \
+	/var/lib/apt/lists/* \
+	/var/tmp/*
 
-RUN apt install -y --assume-yes \
+RUN apt update && apt install -y --assume-yes \
     libncurses5-dev \
     libz-dev \
     patch \
@@ -65,9 +71,12 @@ RUN apt install -y --assume-yes \
     rsync \
     nano \
     python3-pip && \
-    	apt -q -y autoremove && \
-	apt -q -y clean && \
-	rm -rf /var/lib/apt/lists/*
+ apt-get autoremove && \
+ apt-get clean && \
+ rm -rf \
+	/tmp/* \
+	/var/lib/apt/lists/* \
+	/var/tmp/*
 
 RUN echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers && \
     python3 -m pip install --upgrade --force pip && \
@@ -77,9 +86,12 @@ RUN echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers && \
     ./deps.sh --yes && \
     ln -s /usr/local/bin/binwalk /bin/binwalk && \
     rm -rf /opt/binwalk && \
-    apt -q -y autoremove && \
-	apt -q -y clean && \
-	rm -rf /var/lib/apt/lists/*
+ apt-get autoremove && \
+ apt-get clean && \
+ rm -rf \
+	/tmp/* \
+	/var/lib/apt/lists/* \
+	/var/tmp/*
 
 WORKDIR /opt/opbuild
 USER opbuild
