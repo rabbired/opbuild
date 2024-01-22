@@ -1,7 +1,7 @@
 # add binwalk tools
 see https://github.com/ReFirmLabs/binwalk
 # 用于编译Lean源码的简易容器
-    # 生成命令
+    # 生成命令工具
     sudo bash -c 'cat > /etc/profile.d/opbuild.sh' <<EOF
     #!/bin/bash
     unset OPDIR
