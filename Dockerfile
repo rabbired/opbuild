@@ -52,13 +52,13 @@ RUN apt update && apt install -y --assume-yes \
 
 RUN apt update && apt -y upgrade && \
     echo "opbuild ALL=(ALL:ALL) NOPASSWD:ALL"  >> /etc/sudoers && \
-    python3 -m pip install --upgrade --force pip && \
-    ln -s /usr/local/bin/pip /bin/pip && \
-    #git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
-    #cd /opt/binwalk && \
-    #./deps.sh --yes && \
-    #ln -s /usr/local/bin/binwalk /bin/binwalk && \
-    #rm -rf /opt/binwalk && \
+    # python3 -m pip install --upgrade --force pip && \
+    # ln -s /usr/local/bin/pip /bin/pip && \
+    # git clone https://github.com/ReFirmLabs/binwalk.git /opt/binwalk && \
+    # cd /opt/binwalk && \
+    # ./deps.sh --yes && \
+    # ln -s /usr/local/bin/binwalk /bin/binwalk && \
+    # rm -rf /opt/binwalk && \
  echo "**** cleanup ****" && \
  apt-get autoremove && \
  apt-get clean && \
